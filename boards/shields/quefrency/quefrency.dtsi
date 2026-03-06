@@ -6,6 +6,10 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 
+zephyr_udc0: &usbd {
+  status = "okay";
+};
+
 / {
   chosen {
     zmk,kscan = &kscan0;
@@ -220,12 +224,12 @@ RC(4,0)  RC(4,1)  RC(4,2)         RC(4,4)         RC(4,6) /**/   RC(4,7)        
   keypad_position_map3 {
       compatible = "zmk,physical-layout-position-map";
 
-      split_65_map: macropad {
+      split_65_map: split_65_map {
         physical-layout = <&split_65_layout>;
-        positions = <14>;
+        positions = <70 13>;
       };
 
-      split_65_split_bs_map: numpad {
+      split_65_split_bs_map: split_65_split_bs_map {
         physical-layout = <&split_65_split_bs_layout>;
         positions = <13 14>;
       };
