@@ -224,7 +224,7 @@ RC(4,0)  RC(4,1)  RC(4,2)         RC(4,4)         RC(4,6) /**/   RC(4,7)        
 
       split_65_map: macropad {
         physical-layout = <&split_65_layout>;
-        positions = <14>;
+        positions = <13>;
       };
 
       split_65_split_bs_map: numpad {
