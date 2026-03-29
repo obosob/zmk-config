@@ -9,7 +9,7 @@ zephyr_udc0: &usbd {
 
   chosen {
     zmk,kscan            = &mock_kscan;
-    zmk,physical-layout  = &split_65_layout;
+    zmk,physical-layout  = &split_65_split_bs_layout;
   };
 
   mock_kscan: mock_kscan_0 {
@@ -19,18 +19,18 @@ zephyr_udc0: &usbd {
     events = <0>;
   };
 
-  split_65_transform: split_65_transform {
-    compatible = "zmk,matrix-transform";
-    columns = <15>;
-    rows = <6>;
-    map = <
-RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5) RC(0,6)   /**/  RC(0,7) RC(0,8) RC(0,9) RC(0,10) RC(0,11) RC(0,12) RC(0,14)          RC(5,13)
-RC(1,0)     RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)       /**/RC(1,7) RC(1,8) RC(1,9) RC(1,10) RC(1,11) RC(1,12) RC(1,13) RC(1,14)   RC(5,14)
-RC(2,0)       RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)     /**/ RC(2,7) RC(2,8) RC(2,9) RC(2,10) RC(2,11) RC(2,12) RC(2,14)           RC(2,13)
-RC(3,0)          RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(3,6)  /**/   RC(3,7) RC(3,8) RC(3,9) RC(3,10) RC(3,12) RC(3,13)         RC(3,14) RC(3,11)
-RC(4,0)  RC(4,1)  RC(4,2)         RC(4,4)         RC(4,6) /**/   RC(4,7)                RC(4,10) RC(4,11) RC(4,12) RC(4,13) RC(4,14) RC(4,9)
-    >;
-  };
+//  split_65_transform: split_65_transform {
+//    compatible = "zmk,matrix-transform";
+//    columns = <15>;
+//    rows = <6>;
+//    map = <
+//RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5) RC(0,6)   /**/  RC(0,7) RC(0,8) RC(0,9) RC(0,10) RC(0,11) RC(0,12) RC(0,14)          RC(5,13)
+//RC(1,0)     RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)       /**/RC(1,7) RC(1,8) RC(1,9) RC(1,10) RC(1,11) RC(1,12) RC(1,13) RC(1,14)   RC(5,14)
+//RC(2,0)       RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)     /**/ RC(2,7) RC(2,8) RC(2,9) RC(2,10) RC(2,11) RC(2,12) RC(2,14)           RC(2,13)
+//RC(3,0)          RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(3,6)  /**/   RC(3,7) RC(3,8) RC(3,9) RC(3,10) RC(3,12) RC(3,13)         RC(3,14) RC(3,11)
+//RC(4,0)  RC(4,1)  RC(4,2)         RC(4,4)         RC(4,6) /**/   RC(4,7)                RC(4,10) RC(4,11) RC(4,12) RC(4,13) RC(4,14) RC(4,9)
+//    >;
+//  };
 
   split_65_split_bs_transform: split_65_split_bs_transform {
     compatible = "zmk,matrix-transform";
@@ -45,95 +45,95 @@ RC(4,0)  RC(4,1)  RC(4,2)         RC(4,4)         RC(4,6) /**/   RC(4,7)        
     >;
   };
 
-  split_65_layout: split_65_layout {
-    compatible = "zmk,physical-layout";
-    display-name = "65% Layout";
-    transform = <&split_65_transform>;
-
-    keys  //                     w   h    x    y     rot    rx    ry
-      // ROW 1  (left)
-      = <&key_physical_attrs   100 100    0    0       0     0     0> // ESC
-      , <&key_physical_attrs   100 100  100    0       0     0     0> // 1
-      , <&key_physical_attrs   100 100  200    0       0     0     0> // 2
-      , <&key_physical_attrs   100 100  300    0       0     0     0> // 3
-      , <&key_physical_attrs   100 100  400    0       0     0     0> // 4
-      , <&key_physical_attrs   100 100  500    0       0     0     0> // 5
-      , <&key_physical_attrs   100 100  600    0       0     0     0> // 6
-      //        (right)
-      , <&key_physical_attrs   100 100  800    0       0     0     0> // 7
-      , <&key_physical_attrs   100 100  900    0       0     0     0> // 8
-      , <&key_physical_attrs   100 100 1000    0       0     0     0> // 9
-      , <&key_physical_attrs   100 100 1100    0       0     0     0> // 0
-      , <&key_physical_attrs   100 100 1200    0       0     0     0> // - _
-      , <&key_physical_attrs   100 100 1300    0       0     0     0> // = +
-      , <&key_physical_attrs   200 100 1400    0       0     0     0> // BS
-      , <&key_physical_attrs   100 100 1600    0       0     0     0> // HOME
-      // ROW 2  (left)
-      , <&key_physical_attrs   150 100    0  100       0     0     0> // TAB
-      , <&key_physical_attrs   100 100  150  100       0     0     0> // Q
-      , <&key_physical_attrs   100 100  250  100       0     0     0> // W
-      , <&key_physical_attrs   100 100  350  100       0     0     0> // E
-      , <&key_physical_attrs   100 100  450  100       0     0     0> // R
-      , <&key_physical_attrs   100 100  550  100       0     0     0> // T
-      //        (right)
-      , <&key_physical_attrs   100 100  750  100       0     0     0> // Y
-      , <&key_physical_attrs   100 100  850  100       0     0     0> // U
-      , <&key_physical_attrs   100 100  950  100       0     0     0> // I
-      , <&key_physical_attrs   100 100 1050  100       0     0     0> // O
-      , <&key_physical_attrs   100 100 1150  100       0     0     0> // P
-      , <&key_physical_attrs   100 100 1250  100       0     0     0> // [
-      , <&key_physical_attrs   100 100 1350  100       0     0     0> // ]
-      , <&key_physical_attrs   150 100 1450  100       0     0     0> // \ |
-      , <&key_physical_attrs   100 100 1600  100       0     0     0> // END
-      // ROW 3  (left)
-      , <&key_physical_attrs   175 100    0  200       0     0     0> // CAPS
-      , <&key_physical_attrs   100 100  175  200       0     0     0> // A
-      , <&key_physical_attrs   100 100  275  200       0     0     0> // S
-      , <&key_physical_attrs   100 100  375  200       0     0     0> // D
-      , <&key_physical_attrs   100 100  475  200       0     0     0> // F
-      , <&key_physical_attrs   100 100  575  200       0     0     0> // G
-      //        (right)
-      , <&key_physical_attrs   100 100  775  200       0     0     0> // H
-      , <&key_physical_attrs   100 100  875  200       0     0     0> // J
-      , <&key_physical_attrs   100 100  975  200       0     0     0> // K
-      , <&key_physical_attrs   100 100 1075  200       0     0     0> // L
-      , <&key_physical_attrs   100 100 1175  200       0     0     0> // ; :
-      , <&key_physical_attrs   100 100 1275  200       0     0     0> // ' "
-      , <&key_physical_attrs   225 100 1375  200       0     0     0> // ENTER
-      , <&key_physical_attrs   100 100 1600  200       0     0     0> // PGUP
-      // ROW 4  (left)
-      , <&key_physical_attrs   225 100    0  300       0     0     0> // SHIFT
-      , <&key_physical_attrs   100 100  225  300       0     0     0> // Z
-      , <&key_physical_attrs   100 100  325  300       0     0     0> // X
-      , <&key_physical_attrs   100 100  425  300       0     0     0> // C
-      , <&key_physical_attrs   100 100  525  300       0     0     0> // V
-      , <&key_physical_attrs   100 100  625  300       0     0     0> // B
-      //        (right)
-      , <&key_physical_attrs   100 100  825  300       0     0     0> // N
-      , <&key_physical_attrs   100 100  925  300       0     0     0> // M
-      , <&key_physical_attrs   100 100 1025  300       0     0     0> // , <
-      , <&key_physical_attrs   100 100 1125  300       0     0     0> // . >
-      , <&key_physical_attrs   100 100 1225  300       0     0     0> // / ?
-      , <&key_physical_attrs   175 100 1325  300       0     0     0> // SHIFT
-      , <&key_physical_attrs   100 100 1500  300       0     0     0> // UP
-      , <&key_physical_attrs   100 100 1600  300       0     0     0> // PGDN
-      // ROW 5  (left)
-      , <&key_physical_attrs   125 100    0  400       0     0     0> // CTRL
-      , <&key_physical_attrs   125 100  125  400       0     0     0> // WIN
-      , <&key_physical_attrs   125 100  250  400       0     0     0> // ALT
-      , <&key_physical_attrs   125 100  375  400       0     0     0> // FN
-      , <&key_physical_attrs   225 100  500  400       0     0     0> // SPACE
-      //        (right)
-      , <&key_physical_attrs   275 100  825  400       0     0     0> // SPACE
-      , <&key_physical_attrs   100 100 1100  400       0     0     0> // WIN
-      , <&key_physical_attrs   100 100 1200  400       0     0     0> // ALT
-      , <&key_physical_attrs   100 100 1300  400       0     0     0> // CTRL
-      , <&key_physical_attrs   100 100 1400  400       0     0     0> // LEFT
-      , <&key_physical_attrs   100 100 1500  400       0     0     0> // DOWN
-      , <&key_physical_attrs   100 100 1600  400       0     0     0> // RIGHT
-      ;
-  };
-
+//  split_65_layout: split_65_layout {
+//    compatible = "zmk,physical-layout";
+//    display-name = "65% Layout";
+//    transform = <&split_65_transform>;
+//
+//    keys  //                     w   h    x    y     rot    rx    ry
+//      // ROW 1  (left)
+//      = <&key_physical_attrs   100 100    0    0       0     0     0> // ESC
+//      , <&key_physical_attrs   100 100  100    0       0     0     0> // 1
+//      , <&key_physical_attrs   100 100  200    0       0     0     0> // 2
+//      , <&key_physical_attrs   100 100  300    0       0     0     0> // 3
+//      , <&key_physical_attrs   100 100  400    0       0     0     0> // 4
+//      , <&key_physical_attrs   100 100  500    0       0     0     0> // 5
+//      , <&key_physical_attrs   100 100  600    0       0     0     0> // 6
+//      //        (right)
+//      , <&key_physical_attrs   100 100  800    0       0     0     0> // 7
+//      , <&key_physical_attrs   100 100  900    0       0     0     0> // 8
+//      , <&key_physical_attrs   100 100 1000    0       0     0     0> // 9
+//      , <&key_physical_attrs   100 100 1100    0       0     0     0> // 0
+//      , <&key_physical_attrs   100 100 1200    0       0     0     0> // - _
+//      , <&key_physical_attrs   100 100 1300    0       0     0     0> // = +
+//      , <&key_physical_attrs   200 100 1400    0       0     0     0> // BS
+//      , <&key_physical_attrs   100 100 1600    0       0     0     0> // HOME
+//      // ROW 2  (left)
+//      , <&key_physical_attrs   150 100    0  100       0     0     0> // TAB
+//      , <&key_physical_attrs   100 100  150  100       0     0     0> // Q
+//      , <&key_physical_attrs   100 100  250  100       0     0     0> // W
+//      , <&key_physical_attrs   100 100  350  100       0     0     0> // E
+//      , <&key_physical_attrs   100 100  450  100       0     0     0> // R
+//      , <&key_physical_attrs   100 100  550  100       0     0     0> // T
+//      //        (right)
+//      , <&key_physical_attrs   100 100  750  100       0     0     0> // Y
+//      , <&key_physical_attrs   100 100  850  100       0     0     0> // U
+//      , <&key_physical_attrs   100 100  950  100       0     0     0> // I
+//      , <&key_physical_attrs   100 100 1050  100       0     0     0> // O
+//      , <&key_physical_attrs   100 100 1150  100       0     0     0> // P
+//      , <&key_physical_attrs   100 100 1250  100       0     0     0> // [
+//      , <&key_physical_attrs   100 100 1350  100       0     0     0> // ]
+//      , <&key_physical_attrs   150 100 1450  100       0     0     0> // \ |
+//      , <&key_physical_attrs   100 100 1600  100       0     0     0> // END
+//      // ROW 3  (left)
+//      , <&key_physical_attrs   175 100    0  200       0     0     0> // CAPS
+//      , <&key_physical_attrs   100 100  175  200       0     0     0> // A
+//      , <&key_physical_attrs   100 100  275  200       0     0     0> // S
+//      , <&key_physical_attrs   100 100  375  200       0     0     0> // D
+//      , <&key_physical_attrs   100 100  475  200       0     0     0> // F
+//      , <&key_physical_attrs   100 100  575  200       0     0     0> // G
+//      //        (right)
+//      , <&key_physical_attrs   100 100  775  200       0     0     0> // H
+//      , <&key_physical_attrs   100 100  875  200       0     0     0> // J
+//      , <&key_physical_attrs   100 100  975  200       0     0     0> // K
+//      , <&key_physical_attrs   100 100 1075  200       0     0     0> // L
+//      , <&key_physical_attrs   100 100 1175  200       0     0     0> // ; :
+//      , <&key_physical_attrs   100 100 1275  200       0     0     0> // ' "
+//      , <&key_physical_attrs   225 100 1375  200       0     0     0> // ENTER
+//      , <&key_physical_attrs   100 100 1600  200       0     0     0> // PGUP
+//      // ROW 4  (left)
+//      , <&key_physical_attrs   225 100    0  300       0     0     0> // SHIFT
+//      , <&key_physical_attrs   100 100  225  300       0     0     0> // Z
+//      , <&key_physical_attrs   100 100  325  300       0     0     0> // X
+//      , <&key_physical_attrs   100 100  425  300       0     0     0> // C
+//      , <&key_physical_attrs   100 100  525  300       0     0     0> // V
+//      , <&key_physical_attrs   100 100  625  300       0     0     0> // B
+//      //        (right)
+//      , <&key_physical_attrs   100 100  825  300       0     0     0> // N
+//      , <&key_physical_attrs   100 100  925  300       0     0     0> // M
+//      , <&key_physical_attrs   100 100 1025  300       0     0     0> // , <
+//      , <&key_physical_attrs   100 100 1125  300       0     0     0> // . >
+//      , <&key_physical_attrs   100 100 1225  300       0     0     0> // / ?
+//      , <&key_physical_attrs   175 100 1325  300       0     0     0> // SHIFT
+//      , <&key_physical_attrs   100 100 1500  300       0     0     0> // UP
+//      , <&key_physical_attrs   100 100 1600  300       0     0     0> // PGDN
+//      // ROW 5  (left)
+//      , <&key_physical_attrs   125 100    0  400       0     0     0> // CTRL
+//      , <&key_physical_attrs   125 100  125  400       0     0     0> // WIN
+//      , <&key_physical_attrs   125 100  250  400       0     0     0> // ALT
+//      , <&key_physical_attrs   125 100  375  400       0     0     0> // FN
+//      , <&key_physical_attrs   225 100  500  400       0     0     0> // SPACE
+//      //        (right)
+//      , <&key_physical_attrs   275 100  825  400       0     0     0> // SPACE
+//      , <&key_physical_attrs   100 100 1100  400       0     0     0> // WIN
+//      , <&key_physical_attrs   100 100 1200  400       0     0     0> // ALT
+//      , <&key_physical_attrs   100 100 1300  400       0     0     0> // CTRL
+//      , <&key_physical_attrs   100 100 1400  400       0     0     0> // LEFT
+//      , <&key_physical_attrs   100 100 1500  400       0     0     0> // DOWN
+//      , <&key_physical_attrs   100 100 1600  400       0     0     0> // RIGHT
+//      ;
+//  };
+//
   split_65_split_bs_layout: split_65_split_bs_layout {
     compatible = "zmk,physical-layout";
     display-name = "65% Layout (Split Backspace)";
@@ -226,11 +226,11 @@ RC(4,0)  RC(4,1)  RC(4,2)         RC(4,4)         RC(4,6) /**/   RC(4,7)        
   keypad_position_map0 {
       compatible = "zmk,physical-layout-position-map";
 
-      split_65_map: split_65_map {
-        physical-layout = <&split_65_layout>;
-        positions = <70 13>;
-      };
-
+//      split_65_map: split_65_map {
+//        physical-layout = <&split_65_layout>;
+//        positions = <70 13>;
+//      };
+//
       split_65_split_bs_map: split_65_split_bs_map {
         physical-layout = <&split_65_split_bs_layout>;
         positions = <13 14>;
